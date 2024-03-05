@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    dockerimagename = "shashikanthmartha/pythonpp"
+    dockerimagename = "shashikanthmartha/nodeapp"
     dockerImage = ""
   }
 
@@ -11,7 +11,7 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/shashikanthmartha/Jenkins-integration-with-kubernetes.git'
+        git 'https://github.com/shashikanthmartha/nodeapp_test.git'
       }
     }
 
