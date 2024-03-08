@@ -14,16 +14,23 @@ pipeline {
         git 'https://github.com/shashikanthmartha/nodeapp_test.git'
       }
     }
-    
     stage('Deploying App to Kubernetes') {
       steps {
         script {
-          sh ('aws eks update-kubeconfig --name demo-cluster --region ap-south-1')
-          // sh "kubectl get ns"
-          sh "kubectl apply -f deploymentservice.yml"
+          kubernetesDeploy(configs: "deploymentservice.yml", secret-token: "kubernetes")
         }
       }
     }
+    
+    // stage('Deploying App to Kubernetes') {
+    //   steps {
+    //     script {
+    //       sh ('aws eks update-kubeconfig --name demo-cluster --region ap-south-1')
+    //       // sh "kubectl get ns"
+    //       sh "kubectl apply -f deploymentservice.yml"
+    //     }
+    //   }
+    // }
       
     // stage('Build image') {
     //   steps{
